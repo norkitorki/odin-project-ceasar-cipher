@@ -1,5 +1,31 @@
 require_relative '../lib/ceasar_cipher.rb'
 
+describe 'cipher' do
+  context 'when a positive integer is passed in as shift' do
+    it 'returns lowercase letter shifted to the right' do
+      expect(cipher('a', 53)).to eq('b')
+    end
+
+    it 'returns uppercase letter shifted to the right' do
+      expect(cipher('G', 9)).to eq('P')
+    end
+  end
+
+  context 'when a negative integer is passed in as shift' do
+    it 'returns lowercase letter shifted to the left' do
+      expect(cipher('m', -102)).to eq('o')
+    end
+
+    it 'returns uppercase letter shifted to the left' do
+      expect(cipher('Y', -10)).to eq('O')
+    end
+  end
+
+  it 'should only shift letters from the english alphabet' do
+    expect(cipher('!', 20)).to eq('!')
+  end
+end
+
 describe 'ceasar_cipher' do
   it 'should work with small integer shifts' do
     expect(ceasar_cipher('ceasar', 5)).to eq('hjfxfw')
